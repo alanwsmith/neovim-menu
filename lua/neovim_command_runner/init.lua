@@ -79,7 +79,7 @@ list_commands = function()
     end
     vim.api.nvim_buf_set_lines(
         M.floating_buffer, 
-        0, 
+        1, 
         -1, 
         false, 
         lines
