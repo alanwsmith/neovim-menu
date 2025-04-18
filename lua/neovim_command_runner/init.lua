@@ -37,26 +37,30 @@ local open_floating_window = function()
   opts.height = vim.api.nvim_win_get_height(0) - 12
   opts.col = (vim.api.nvim_win_get_width(0) / 2) - (opts.width / 2)
   opts.row = (vim.api.nvim_win_get_height(0) / 2) - (opts.height / 2)
-  local floating_buffer = vim.api.nvim_create_buf(false, true)
-  local floating_window = vim.api.nvim_open_win(floating_buffer, true, opts)
-
-
-
+  M.floating_buffer = vim.api.nvim_create_buf(false, true)
+  M.floating_window = vim.api.nvim_open_win(M.floating_buffer, true, opts)
   vim.keymap.set("n", "<ESC>", function()
-      vim.api.nvim_win_close(floating_window, true)
+      vim.api.nvim_win_close(M.floating_window, true)
     end, 
-    { buffer = floating_buffer }
+    { buffer = M.floating_buffer }
   )
-
-  return floating_buffer
 end
 
 list_commands = function()
-    insert_lines({
-        "1. some thing",
-        "2. another thing",
-        "3. another thing",
-    })
+    local response = vim.system(
+        {'ls', '/Users/alan/workshop/neovim_command_runner.nvim/commands'}, 
+        { text = true }):wait()
+    local lines =  {} 
+    for line in response['stdout']:gmatch '[^\n]+' do
+        table.insert(lines, line)
+    end
+    vim.api.nvim_buf_set_lines(
+        M.floating_buffer, 
+        0, 
+        -1, 
+        false, 
+        lines
+    )
 end
 
 M.open_command_window = function()
