@@ -44,11 +44,31 @@ local open_floating_window = function()
     end, 
     { buffer = M.floating_buffer }
   )
+  vim.keymap.set("n", "<CR>", function() 
+        local row, col = unpack(
+            vim.api.nvim_win_get_cursor(
+                M.floating_window
+            )
+        )
+        local script_to_run = vim.api.nvim_buf_get_lines(
+            M.floating_buffer, 
+            row - 1, 
+            row,
+            false
+        )
+        require(
+            'neovim_command_runner.commands.' .. string.match(script_to_run[1], '[^.]+')
+        ).run()
+        vim.api.nvim_win_close(M.floating_window, true)
+    end, 
+    { buffer = M.floating_buffer }
+  )
 end
 
 list_commands = function()
+    local commands_dir = '/Users/alan/workshop/neovim_command_runner.nvim/lua/neovim_command_runner/commands'
     local response = vim.system(
-        {'ls', '/Users/alan/workshop/neovim_command_runner.nvim/commands'}, 
+        {'ls', commands_dir }, 
         { text = true }):wait()
     local lines =  {} 
     for line in response['stdout']:gmatch '[^\n]+' do
@@ -64,7 +84,7 @@ list_commands = function()
 end
 
 M.open_command_window = function()
-    local buffer_number = open_floating_window()
+    open_floating_window()
     list_commands()
 end
 
