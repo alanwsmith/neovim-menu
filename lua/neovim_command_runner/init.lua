@@ -27,25 +27,21 @@ local insert_lines = function(lines)
     )
 end
 
-local run_command = function(win, buf)
+local run_command = function(float_win, float_buf, active_buf)
     local row, col = unpack(
-        vim.api.nvim_win_get_cursor(
-            win
-        )
+        vim.api.nvim_win_get_cursor(float_win)
     )
     local script_to_run = vim.api.nvim_buf_get_lines(
-        buf,
-        row - 1, 
-        row,
-        false
+        float_buf, row - 1, row, false
     )
+    vim.api.nvim_win_close(float_win, true)
     require(
         'neovim_command_runner.commands.' .. string.match(script_to_run[1], '[^.]+')
-    ).run()
-    vim.api.nvim_win_close(win, true)
+    ).run(active_buf)
 end
 
 local open_floating_window = function()
+    local active_buffer = vim.api.nvim_get_current_buf()
   local opts = {
     style="minimal", 
     relative='editor',
@@ -66,7 +62,7 @@ local open_floating_window = function()
     "n", 
     "<CR>", 
     function() 
-        run_command(M.floating_window, M.floating_buffer)
+        run_command(M.floating_window, M.floating_buffer, active_buffer)
     end,
     { buffer = M.floating_buffer }
   )
