@@ -1,5 +1,17 @@
 local M = {}
 
+local move_cursor_to_end_of_buffer = function()
+    local source_lines = vim.api.nvim_buf_get_lines(0, 0, -1, true)
+    local line = 0
+    for _ in pairs(source_lines) do 
+        line = line + 1 
+    end
+    local character = string.len(
+        source_lines[line]
+    )
+    vim.api.nvim_win_set_cursor(0, {line, character})
+end
+
 local append_to_buffer = function(buffer_number, new_lines) 
     if type(new_lines) == "string" then
         new_lines = { new_lines }
@@ -78,59 +90,34 @@ local insert_lines = function(lines)
 end
 
 M.run = function(active_buffer, floading_window, floating_buffer)
-    -- print(count_lines(active_buffer))
     local document_folder = "/Users/alan/GrimoireBookmarks"
-    -- local ksuid = get_ksuid()
+    local ksuid = get_ksuid()
     local datetime = get_datetime()
+    -- xxx
     --local parent_dir = document_folder .. "/" .. ksuid 
     local parent_dir = document_folder .. "/testing"
+    -- xxx
     local file_path = parent_dir .. "/source.neo"
     vim.system({'mkdir', '-p', parent_dir}):wait()
     vim.api.nvim_command('edit ' .. file_path)
-
     append_to_buffer(0, {
         "-- bookmark", 
         "-- title: ",
         "-- url: ",
     })
-
+    move_cursor_to_end_of_buffer()
+    vim.api.nvim_feedkeys("p", "n", true)
     append_to_buffer(0, {
-        "-- bookmark", 
-        "-- title: ",
-        "-- url: ",
+        "", 
+        "", 
+        "",
+        "-- page",
+        "-- created: " .. datetime, 
+        "-- updated: " .. datetime,
+        "-- id: " .. ksuid,
+        "-- template: bookmark", 
+        "-- status: done" 
     })
-
-
-
-    -- insert_lines({
-    --     "-- bookmark", 
-    --     "-- title: ",
-    -- })
-
--- vim.api.nvim_buf_set_lines(
---   0, -1, -1, true, { "alfa" }
--- )
--- vim.api.nvim_buf_set_lines(
---   0, -1, -1, true, { "bravo" }
--- )
-
-    -- insert_lines({
-    --     "",
-    --     "",
-    --     "",
--- "-- page",
--- "-- created: " .. datetime, 
--- "-- updated: " .. datetime,
--- "-- id: " .. ksuid,
--- "-- template: bookmark", 
--- "-- status: done" 
-    -- })
-
-    -- vim.api.nvim_win_set_cursor(
-    --     0,
-    --     {3, 0}
-    -- )
-    -- vim.cmd('startinsert')
 
 end
 
