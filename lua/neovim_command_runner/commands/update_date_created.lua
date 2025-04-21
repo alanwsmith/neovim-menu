@@ -25,7 +25,7 @@ end
 
 M.run = function(active_buffer, floating_window, floating_buffer)
     local new_date = get_datetime()
-    local lines = vim.api.nvim_buf_get_lines(active_buffer, 0, -1, false)
+    local lines = vim.api.nvim_buf_get_lines(active_buffer, 0, -1, true)
     for line_num, line in ipairs(lines) do
         if string.find(line, "^-- created: ") ~= nil then
             replace_line_in_buffer(
