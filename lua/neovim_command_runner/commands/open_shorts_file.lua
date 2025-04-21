@@ -48,7 +48,7 @@ local insert_lines = function(lines)
     )
 end
 
-M.run = function(buffer_number)
+M.run = function(active_buffer, floading_window, floating_buffer)
     local document_folder = "/Users/alan/GrimoireShorts"
     local ksuid = get_ksuid()
     local datetime = get_datetime()

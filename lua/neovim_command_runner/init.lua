@@ -27,45 +27,51 @@ local insert_lines = function(lines)
     )
 end
 
-local run_command = function(float_win, float_buf, active_buf)
+local run_command = function(active_buf, float_win, float_buf)
     local row, col = unpack(
         vim.api.nvim_win_get_cursor(float_win)
     )
-    local script_to_run = vim.api.nvim_buf_get_lines(
-        float_buf, row - 1, row, false
-    )
-    vim.api.nvim_win_close(float_win, true)
-    require(
-        'neovim_command_runner.commands.' .. string.match(script_to_run[1], '[^.]+')
-    ).run(active_buf)
+    if row > 1 then
+        local script_to_run = vim.api.nvim_buf_get_lines(
+            float_buf, row - 1, row, false
+        )
+        vim.api.nvim_win_close(float_win, true)
+        require(
+            'neovim_command_runner.commands.' .. string.match(script_to_run[1], '[^.]+')
+        ).run(active_buf)
+    end
 end
 
 local open_floating_window = function()
     local active_buffer = vim.api.nvim_get_current_buf()
-  local opts = {
-    style="minimal", 
-    relative='editor',
-    border='single'
-  }
-  opts.width = vim.api.nvim_win_get_width(0) - 18
-  opts.height = vim.api.nvim_win_get_height(0) - 12
-  opts.col = (vim.api.nvim_win_get_width(0) / 2) - (opts.width / 2)
-  opts.row = (vim.api.nvim_win_get_height(0) / 2) - (opts.height / 2)
-  M.floating_buffer = vim.api.nvim_create_buf(false, true)
-  M.floating_window = vim.api.nvim_open_win(M.floating_buffer, true, opts)
-  vim.keymap.set("n", "<ESC>", function()
-      vim.api.nvim_win_close(M.floating_window, true)
-    end, 
-    { buffer = M.floating_buffer }
-  )
-  vim.keymap.set(
-    "n", 
-    "<CR>", 
-    function() 
-        run_command(M.floating_window, M.floating_buffer, active_buffer)
-    end,
-    { buffer = M.floating_buffer }
-  )
+    local opts = {
+        style="minimal", 
+        relative='editor',
+        border='single'
+    }
+    opts.width = vim.api.nvim_win_get_width(0) - 18
+    opts.height = vim.api.nvim_win_get_height(0) - 12
+    opts.col = (vim.api.nvim_win_get_width(0) / 2) - (opts.width / 2)
+    opts.row = (vim.api.nvim_win_get_height(0) / 2) - (opts.height / 2)
+    M.floating_buffer = vim.api.nvim_create_buf(false, true)
+    M.floating_window = vim.api.nvim_open_win(M.floating_buffer, true, opts)
+    vim.keymap.set("n", "<ESC>", function()
+        vim.api.nvim_win_close(M.floating_window, true)
+        end, 
+        { buffer = M.floating_buffer }
+    )
+    vim.keymap.set(
+        "n", 
+        "<CR>", 
+        function() 
+            run_command(
+                active_buffer,
+                M.floating_window, 
+                M.floating_buffer
+            )
+        end,
+        { buffer = M.floating_buffer }
+    )
 end
 
 list_commands = function()
