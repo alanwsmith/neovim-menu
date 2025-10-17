@@ -1,9 +1,6 @@
--- TODO: make an extension that sends in
--- directly from a browser. probably via
--- a little rust server. 
+-- outputs the template for a new post
 
 local M = {}
-
 
 local move_cursor_to_end_of_buffer = function()
     local source_lines = vim.api.nvim_buf_get_lines(0, 0, -1, true)
@@ -48,7 +45,7 @@ end
 
 local get_datetime = function()
     local response = vim.system(
-        {"date", "+%Y-%m-%dT%H:%M:%S-04:00"},
+        {"date", "-Iseconds"},
         { text = true }):wait()
     local output = response['stdout']:gsub(
         "\n", ""
@@ -95,23 +92,12 @@ local insert_lines = function(lines)
 end
 
 M.run = function(active_buffer, floading_window, floating_buffer)
-    local document_folder = "/Users/alan/GrimoireBookmarks"
     local ksuid = get_ksuid()
     local datetime = get_datetime()
-    -- xxx
-    --local parent_dir = document_folder .. "/" .. ksuid 
-    local parent_dir = document_folder .. "/testing"
-    -- xxx
-    local file_path = parent_dir .. "/source.neo"
-    vim.system({'mkdir', '-p', parent_dir}):wait()
-    vim.api.nvim_command('edit ' .. file_path)
     append_to_buffer(0, {
-        "-- bookmark", 
         "-- title: ",
-        "-- url: ",
     })
     move_cursor_to_end_of_buffer()
-    vim.api.nvim_feedkeys("p", "n", true)
     append_to_buffer(0, {
         "", 
         "", 
@@ -120,10 +106,12 @@ M.run = function(active_buffer, floading_window, floating_buffer)
         "-- created: " .. datetime, 
         "-- updated: " .. datetime,
         "-- id: " .. ksuid,
-        "-- template: bookmark", 
-        "-- status: done" 
+        "-- template: post", 
+        "-- status: draft" 
     })
 
 end
 
 return M
+
+
