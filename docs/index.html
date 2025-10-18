@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<title>This Website Needs A Name</title>
-<meta property="og:title" content="This Website Needs A Name" />
+<title>neovim-menu</title>
+<meta property="og:title" content="neovim-menu" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <meta name="description" content="" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.alanwsmith.com/" />
-<meta property="og:image" content="https://www.alanwsmith.com/images/og-image.jpg" />
+<meta property="og:url" content="https://neovim-menu.alanwsmith.com/" />
+<meta property="og:image" content="https://neovim-menu.alanwsmith.com/images/og-image.jpg" />
 <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
@@ -2055,15 +2055,77 @@ window.BittyClass = class {
           <a href="https://www.alanwsmith.com/feeds/posts.xml">rss</a>
         </div>
         <hgroup class="large-top-margin">
-          <h1>A New Site</h1>
+          <h1>neovim-menu</h1>
           <div class="small-font accent-bottom-border">
-            With a subtitle
+            a personal menu for performing various tasks in neovim
           </div>
         </hgroup>
       </header>
 
       <main class="default-wrapper default-flow">
-<p>Hello, world</p>      </main>
+<p><a href="https://github.com/alanwsmith/neovim-menu">source code</a></p>
+
+<h2>README</h2>
+
+<pre>
+-- title
+
+neovim-menu
+
+A personal neovim plugin for performing
+various tasks and executing
+various commands. 
+
+-- warning
+
+All this stuff is specific to my 
+installations and workflows. You're
+welcome to poke around, but 
+trying to use it is unlikely 
+to go well. 
+
+-- h2
+
+Installation
+
+Add this into the lazy setup:
+
+-- code
+-- lua
+
+require('lazy').setup({
+
+  { dir = "~/workshop/neovim-menu/neovim-menu.nvim" },
+
+}, {})
+
+
+-- h2
+
+Adding Commands
+
+Commands are written as ``.lua`` file
+in the directory:
+
+-- path
+
+~/workshop/neovim-menu/neovim-menu.nvim/lua/neovim-menu/commands
+
+
+-- h2
+
+Keybind
+
+The keybind is set up in:
+
+-- path
+
+~/.config/nvim/after/plugin/keymappings.lua
+
+
+
+
+</pre>      </main>
 
       <footer>
         <div class="small-font">
