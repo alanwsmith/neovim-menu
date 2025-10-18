@@ -37,7 +37,7 @@ local run_command = function(active_buf, float_win, float_buf)
         )
         vim.api.nvim_win_close(float_win, true)
         require(
-            'neovim_command_runner.commands.' .. string.match(script_to_run[1], '[^.]+')
+            'neovim-menu.commands.' .. string.match(script_to_run[1], '[^.]+')
         ).run(active_buf)
     end
 end
@@ -75,7 +75,7 @@ local open_floating_window = function()
 end
 
 list_commands = function()
-    local commands_dir = '/Users/alan/workshop/neovim_command_runner.nvim/lua/neovim_command_runner/commands'
+    local commands_dir = '/Users/alan/workshop/neovim-menu/neovim-menu.nvim/lua/neovim-menu/commands'
     local response = vim.system(
         {'ls', commands_dir }, 
         { text = true }):wait()
