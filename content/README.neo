@@ -1,0 +1,58 @@
+-- title
+
+neovim-menu
+
+A personal neovim plugin for performing
+various tasks and executing
+various commands. 
+
+-- warning
+
+All this stuff is specific to my 
+installations and workflows. You're
+welcome to poke around, but 
+trying to use it is unlikely 
+to go well. 
+
+-- h2
+
+Installation
+
+Add this into the lazy setup:
+
+-- code
+-- lua
+
+require('lazy').setup({
+
+  { dir = "~/workshop/neovim-menu/neovim-menu.nvim" },
+
+}, {})
+
+
+-- h2
+
+Adding Commands
+
+Commands are written as ``.lua`` file
+in the directory:
+
+-- path
+
+~/workshop/neovim-menu/neovim-menu.nvim/lua/neovim-menu/commands
+
+
+-- h2
+
+Keybind
+
+The keybind is set up in:
+
+-- path
+
+~/.config/nvim/after/plugin/keymappings.lua
+
+
+
+
+

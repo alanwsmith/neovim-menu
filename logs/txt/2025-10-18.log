@@ -1,0 +1,30 @@
+2025-10-18T00:03:46.231552Z|I|src/bin/ssb-0-7.rs|26
+Initilizing
+2025-10-18T00:03:46.231632Z|I|src/bin/ssb-0-7.rs|29
+Found port for web server: 5444
+2025-10-18T00:03:46.232123Z|I|src/watcher/mod.rs|27
+Starting watcher
+2025-10-18T00:03:46.232258Z|I|src/builder/mod.rs|230
+Starting builder
+2025-10-18T00:03:46.232261Z|I|src/server/mod.rs|28
+Starting web server
+2025-10-18T00:03:46.232791Z|I|src/builder/mod.rs|40
+Building site on port 5444.
+2025-10-18T00:03:46.233677Z|I|/Users/alan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/watchexec-8.0.1/src/sources/fs.rs|159
+obtaining pathset [3mconfig_pathset[0m[2m=[0m[WatchedPath { path: "content", recursive: true }, WatchedPath { path: "support", recursive: true }]
+2025-10-18T00:03:46.238716Z|I|src/builder/mod.rs|49
+Transforming HTML.
+2025-10-18T00:03:46.241025Z|I|src/builder/mod.rs|253
+Loading data.
+2025-10-18T00:03:46.242390Z|I|src/builder/mod.rs|51
+Copying files.
+2025-10-18T00:03:46.242548Z|E|/Users/alan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/watchexec-8.0.1/src/sources/fs.rs|212
+notify watch() error [3merr[0m[2m=[0mError { kind: PathNotFound, paths: ["support"] }
+2025-10-18T00:03:46.242563Z|E|/Users/alan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/watchexec-8.0.1/src/watchexec.rs|243
+runtime error [3merr[0m[2m=[0mNative fs watcher error
+2025-10-18T00:03:46.243468Z|I|src/builder/mod.rs|53
+Copying JavaScript Files.
+2025-10-18T00:03:46.243698Z|I|src/builder/mod.rs|137
+Loading data.
+2025-10-18T00:03:46.245967Z|I|src/builder/mod.rs|59
+Build complete. Reloading browser on port 5444.

@@ -1,0 +1,15 @@
+{"timestamp":"2025-10-18T00:03:46.231288Z","level":"INFO","fields":{"message":"Initilizing"},"target":"ssb_0_7"}
+{"timestamp":"2025-10-18T00:03:46.231626Z","level":"INFO","fields":{"message":"Found port for web server: 5444"},"target":"ssb_0_7"}
+{"timestamp":"2025-10-18T00:03:46.232115Z","level":"INFO","fields":{"message":"Starting watcher"},"target":"simple_site_builder::watcher"}
+{"timestamp":"2025-10-18T00:03:46.232249Z","level":"INFO","fields":{"message":"Starting builder"},"target":"simple_site_builder::builder"}
+{"timestamp":"2025-10-18T00:03:46.232250Z","level":"INFO","fields":{"message":"Starting web server"},"target":"simple_site_builder::server"}
+{"timestamp":"2025-10-18T00:03:46.232771Z","level":"INFO","fields":{"message":"Building site on port 5444."},"target":"simple_site_builder::builder"}
+{"timestamp":"2025-10-18T00:03:46.233657Z","level":"INFO","fields":{"message":"obtaining pathset","config_pathset":"[WatchedPath { path: \"content\", recursive: true }, WatchedPath { path: \"support\", recursive: true }]"},"target":"watchexec::sources::fs"}
+{"timestamp":"2025-10-18T00:03:46.238704Z","level":"INFO","fields":{"message":"Transforming HTML."},"target":"simple_site_builder::builder"}
+{"timestamp":"2025-10-18T00:03:46.241012Z","level":"INFO","fields":{"message":"Loading data."},"target":"simple_site_builder::builder"}
+{"timestamp":"2025-10-18T00:03:46.242381Z","level":"INFO","fields":{"message":"Copying files."},"target":"simple_site_builder::builder"}
+{"timestamp":"2025-10-18T00:03:46.242532Z","level":"ERROR","fields":{"message":"notify watch() error","err":"Error { kind: PathNotFound, paths: [\"support\"] }"},"target":"watchexec::sources::fs"}
+{"timestamp":"2025-10-18T00:03:46.242557Z","level":"ERROR","fields":{"message":"runtime error","err":"Native fs watcher error"},"target":"watchexec::watchexec"}
+{"timestamp":"2025-10-18T00:03:46.243462Z","level":"INFO","fields":{"message":"Copying JavaScript Files."},"target":"simple_site_builder::builder"}
+{"timestamp":"2025-10-18T00:03:46.243693Z","level":"INFO","fields":{"message":"Loading data."},"target":"simple_site_builder::builder"}
+{"timestamp":"2025-10-18T00:03:46.245957Z","level":"INFO","fields":{"message":"Build complete. Reloading browser on port 5444."},"target":"simple_site_builder::builder"}
